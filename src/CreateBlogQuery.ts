@@ -7,5 +7,5 @@ export const createBlogCache = ({
   defaultConfig?: ReactQueryConfig;
 }) => {
     const blogCache = new QueryCache(configObject)
-  return {queryCache: blogCache};
+  return  blogCache;
 };
