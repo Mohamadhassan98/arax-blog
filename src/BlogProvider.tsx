@@ -6,7 +6,8 @@ import {createBlogCache} from "./CreateBlogQuery";
 interface IBlogProvider {
   cache: ReturnType<typeof createBlogCache>;
 }
-interface IBlogProviderWithDehyrateState {
+
+interface IBlogProviderWithDehydrateState {
   cache: ReturnType<typeof createBlogCache>;
   dehydrateState: DehydratedState;
 }
@@ -15,13 +16,13 @@ const BlogProvider = <T extends true | false | undefined = false>({
   cache,
   children,
   ...props
-}: {ssr?: T} & (T extends false | undefined ? IBlogProvider : IBlogProviderWithDehyrateState) & {
+}: {ssr?: T} & (T extends false | undefined ? IBlogProvider : IBlogProviderWithDehydrateState) & {
     children?: React.ReactNode;
   }) => {
   return (
     <ReactQueryCacheProvider queryCache={cache}>
       {ssr ? (
-        <Hydrate state={((props as any) as IBlogProviderWithDehyrateState).dehydrateState}>{children}</Hydrate>
+        <Hydrate state={((props as any) as IBlogProviderWithDehydrateState).dehydrateState}>{children}</Hydrate>
       ) : (
         children
       )}
