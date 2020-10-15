@@ -1,14 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import {ReactQueryDevtools} from "react-query-devtools";
+import App from "./App";
+import BlogProvider from "./BlogProvider";
+import {createBlogCache} from "./CreateBlogQuery";
 
+const blogCache = createBlogCache({
+  ssr : true
+});
 function Index() {
   return (
-    <React.StrictMode>
-      <ReactQueryDevtools />
-      <App />
-    </React.StrictMode>
+    <BlogProvider cache={blogCache} >
+      <React.StrictMode>
+        <ReactQueryDevtools />
+        <App />
+      </React.StrictMode>
+    </BlogProvider>
   );
 }
 
