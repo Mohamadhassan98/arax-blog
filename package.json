@@ -6,14 +6,20 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3",
     "typescript": "~3.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "prettier": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,7 +28,81 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "for-direction": "warn",
+      "no-cond-assign": [
+        "error",
+        "always"
+      ],
+      "no-dupe-args": "error",
+      "no-dupe-else-if": "warn",
+      "no-dupe-keys": "error",
+      "no-duplicate-case": "warn",
+      "no-empty": [
+        "warn",
+        {
+          "allowEmptyCatch": true
+        }
+      ],
+      "no-obj-calls": "error",
+      "no-sparse-arrays": "error",
+      "no-template-curly-in-string": "warn",
+      "no-unexpected-multiline": "error",
+      "no-unreachable": "warn",
+      "valid-typeof": "error",
+      "consistent-return": "error",
+      "curly": "warn",
+      "default-case": "warn",
+      "default-param-last": "warn",
+      "no-case-declarations": "error",
+      "no-empty-function": "warn",
+      "no-empty-pattern": "warn",
+      "no-fallthrough": "warn",
+      "no-floating-decimal": "warn",
+      "no-multi-spaces": "warn",
+      "no-self-compare": "warn",
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "semi-spacing": [
+        "warn",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "semi-style": "warn",
+      "arrow-parens": "warn",
+      "prefer-template": "warn",
+      "prefer-destructuring": "warn",
+      "react/jsx-curly-brace-presence": [
+        "warn",
+        {
+          "props": "never",
+          "children": "never"
+        }
+      ],
+      "react/jsx-key": [
+        "warn",
+        {
+          "checkFragmentShorthand": true
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": true,
+    "printWidth": 120,
+    "quoteProps": "as-needed",
+    "semi": true,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "proseWrap": "never"
   },
   "browserslist": {
     "production": [
