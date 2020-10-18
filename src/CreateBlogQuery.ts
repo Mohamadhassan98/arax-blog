@@ -1,11 +1,6 @@
-import {QueryCache, ReactQueryConfig} from "react-query";
+import {QueryCache} from "react-query";
 
-export const createBlogCache = ({
-  ...configObject
-}: {
-  frozen?: boolean;
-  defaultConfig?: ReactQueryConfig;
-}) => {
-    const blogCache = new QueryCache(configObject)
-  return  blogCache;
+export const createBlogCache = ({...configObject}: ConstructorParameters<typeof QueryCache>[0]) => {
+  const blogCache = new QueryCache(configObject);
+  return blogCache;
 };
