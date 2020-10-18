@@ -8,7 +8,7 @@ type ArrayItemType = {
 type ArrayType = [ArrayItemType];
 
 export type DefType = {
-  type: Primitives | ArrayType | SchemaModel;
+  type: Primitives | ArrayType | SchemaModel | "this";
   nullable?: true;
   maybe?: true;
 };
@@ -41,7 +41,9 @@ type SchemaModel = {[k: string]: DefType};
 
 type SchemaInferType<T extends DefType> = InferMaybeNullable<T>;
 
-type SchemaResultType<T extends SchemaModel> = {[k in keyof T]: SchemaInferType<T[k]>};
+type SchemaResultType<T extends SchemaModel> = {
+  [k in keyof T]: T[k]["type"] extends "this" ? SchemaResultType<T> : SchemaInferType<T[k]>;
+};
 
 function Inferable<T extends SchemaModel>(model: T) {
   return {} as SchemaResultType<T>;
@@ -55,9 +57,13 @@ const CommentType = makeConstObject({
   title: {type: "string", maybe: true, nullable: true},
   id: {type: "number"},
   approved: {type: "boolean", maybe: true},
-  parent: {type: "boolean", nullable: true, maybe: true},
+  parent: {type: "this", nullable: true, maybe: true},
   children: {type: [{type: "string", nullable: true}], maybe: true},
 });
+
+const com = Inferable(CommentType);
+
+const {parent} = com;
 
 const replyComment = Inferable({
   user: {type: "string"},
